@@ -286,7 +286,7 @@
 .pantalla-juego {
   position: relative;
   max-width: 1000px;
-  margin: 5rem auto 2rem;
+  margin: 0rem auto 0rem;
   border-radius: 1rem;
   padding: 2rem;
 }
