@@ -15,11 +15,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    // host: "0.0.0.0", // or your local network IP
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, "localhost+2-key.pem")),
-      cert: fs.readFileSync(path.resolve(__dirname, "localhost+2-cert.pem")),
-    },
-  },
+  // server: {
+  //   // host: "0.0.0.0", // or your local network IP
+  //   https: {
+  //     key: fs.readFileSync(path.resolve(__dirname, "localhost+2-key.pem")),
+  //     cert: fs.readFileSync(path.resolve(__dirname, "localhost+2-cert.pem")),
+  //   },
+  // },
 })
