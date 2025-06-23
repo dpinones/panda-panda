@@ -246,7 +246,7 @@ const PantallaJuego: React.FC<PantallaJuegoProps> = ({
     <div className="settings-overlay" onClick={() => setShowSettings(false)}>
       <div className="settings-popup" onClick={(e) => e.stopPropagation()}>
         <div className="settings-header">
-          <h3>Ajustes</h3>
+          <h3>Settings</h3>
           <button 
             className="close-button"
             onClick={() => setShowSettings(false)}
@@ -262,7 +262,7 @@ const PantallaJuego: React.FC<PantallaJuegoProps> = ({
               onClick={() => onToggleMusic?.()}
             >
               <span className="setting-icon">🎵</span>
-              <span className="setting-label">Música:</span>
+              <span className="setting-label">Music:</span>
               <span className="setting-status">{isMusicEnabled ? 'ON' : 'OFF'}</span>
             </button>
           </div>
@@ -273,18 +273,18 @@ const PantallaJuego: React.FC<PantallaJuegoProps> = ({
               onClick={() => onToggleSound?.()}
             >
               <span className="setting-icon">🔊</span>
-              <span className="setting-label">Efectos:</span>
+              <span className="setting-label">Effects:</span>
               <span className="setting-status">{isSoundEnabled ? 'ON' : 'OFF'}</span>
             </button>
           </div>
 
           <div className="settings-buttons">
             <button className="action-btn home-btn" onClick={handleHomeClick}>
-              🏠 Inicio
+              🏠 Home
             </button>
             
             <button className="action-btn continue-btn" onClick={handleContinueClick}>
-              ▶️ Continuar
+              ▶️ Continue
             </button>
           </div>
         </div>
