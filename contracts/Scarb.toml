@@ -1,0 +1,26 @@
+[package]
+cairo-version = "=2.10.1"
+name = "dojo_sheep_a_sheep"
+version = "1.0.0"
+edition = "2023_01"
+
+[cairo]
+sierra-replace-ids = true
+
+[scripts]
+migrate = "sozo build && sozo migrate"
+initialize = "sozo execute dojo_sheep_a_sheep-sheep_a_sheep_actions initialize_game_settings --wait"
+start-game = "sozo execute dojo_sheep_a_sheep-sheep_a_sheep_actions start_new_game --wait"
+daily-challenge = "sozo execute dojo_sheep_a_sheep-sheep_a_sheep_actions start_daily_challenge --wait"
+
+[dependencies]
+dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.5.1" }
+
+[[target.starknet-contract]]
+build-external-contracts = ["dojo::world::world_contract::world"]
+
+[dev-dependencies]
+cairo_test = "=2.10.1"
+dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.5.1" }
+
+[profile.prod]
