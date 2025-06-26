@@ -30,6 +30,8 @@ export const useGameActions = () => {
       const response = await client.actions.startNewGame(account);
       const transaction_hash = response?.transaction_hash ?? "";
 
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
       const tx = await account.waitForTransaction(transaction_hash, {
         retryInterval: 100,
       });
