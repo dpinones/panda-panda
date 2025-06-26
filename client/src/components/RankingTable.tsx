@@ -85,12 +85,25 @@ const RankingTable: React.FC<RankingTableProps> = ({
       console.log("Ranking GraphQL response:", result);
 
       if (result.data && result.data.dojoSheepASheepGameFinishedModels && result.data.dojoSheepASheepGameFinishedModels.edges) {
-        const rankings = result.data.dojoSheepASheepGameFinishedModels.edges
+        const allGames = result.data.dojoSheepASheepGameFinishedModels.edges
           .map((edge: any) => ({
             player: edge.node.player,
             game_id: Number(edge.node.game_id),
             completion_time: Number(edge.node.completion_time),
-          }))
+          }));
+
+        // Agrupar por jugador y mantener solo el mejor record (menor tiempo) de cada uno
+        const bestRecordsByPlayer = new Map<string, GameFinishedData>();
+        
+        allGames.forEach((game: GameFinishedData) => {
+          const existingRecord = bestRecordsByPlayer.get(game.player);
+          if (!existingRecord || game.completion_time < existingRecord.completion_time) {
+            bestRecordsByPlayer.set(game.player, game);
+          }
+        });
+
+        // Convertir a array, ordenar por tiempo y tomar top 5
+        const rankings = Array.from(bestRecordsByPlayer.values())
           .sort((a: GameFinishedData, b: GameFinishedData) => a.completion_time - b.completion_time)
           .slice(0, 5);
 
