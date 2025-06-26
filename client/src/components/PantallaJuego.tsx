@@ -36,6 +36,7 @@ const PantallaJuego: React.FC<PantallaJuegoProps> = ({
   onToggleSound
 }) => {
   const [showSettings, setShowSettings] = React.useState(false);
+  const [showInfo, setShowInfo] = React.useState(false);
   const [animatingTile, setAnimatingTile] = React.useState<string | null>(null);
 
   // Helper function to convert BigNumberish to number
@@ -292,19 +293,78 @@ const PantallaJuego: React.FC<PantallaJuegoProps> = ({
     </div>
   );
 
+  const InfoPopup = () => (
+    <div className="settings-overlay" onClick={() => setShowInfo(false)}>
+      <div className="settings-popup info-popup" onClick={(e) => e.stopPropagation()}>
+        <div className="settings-header">
+          <h3>📖 How to Play</h3>
+          <button 
+            className="close-button"
+            onClick={() => setShowInfo(false)}
+          >
+            ✕
+          </button>
+        </div>
+        
+        <div className="settings-content info-content">
+          <div className="info-section">
+            <h4>🎯 Goal</h4>
+            <p>Clear all tiles by making groups of 3 matching tiles.</p>
+          </div>
+
+          <div className="info-section">
+            <h4>🎮 How to Play</h4>
+            <ul>
+              <li><strong>Click accessible tiles</strong> (not blocked by others)</li>
+              <li><strong>Match 3 identical tiles</strong> in the temporary slot</li>
+              <li><strong>Groups disappear automatically</strong></li>
+              <li><strong>Don't fill the slot!</strong> Max 7 tiles</li>
+            </ul>
+          </div>
+
+          <div className="info-section">
+            <h4>🚫 Rules</h4>
+            <ul>
+              <li>Only <strong>unblocked tiles</strong> can be clicked</li>
+              <li>Upper tiles block lower ones</li>
+              <li>Full slot = <strong>Game Over</strong></li>
+            </ul>
+          </div>
+
+          <div className="settings-buttons">
+            <button className="action-btn continue-btn" onClick={() => setShowInfo(false)}>
+              ✅ Got it!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="pantalla-juego pantalla-juego-background">      
-      {/* Botón de configuración */}
-      <button 
-        className="settings-button"
-        onClick={() => setShowSettings(true)}
-        title="Configuración"
-      >
-        ⚙️
-      </button>
+      {/* Botones de interfaz */}
+      <div className="game-ui-buttons">
+        <button 
+          className="settings-button"
+          onClick={() => setShowSettings(true)}
+          title="Configuración"
+        >
+          ⚙️
+        </button>
+        
+        <button 
+          className="info-button"
+          onClick={() => setShowInfo(true)}
+          title="Cómo jugar"
+        >
+          ℹ️
+        </button>
+      </div>
 
-      {/* Popup de configuración */}
+      {/* Popups */}
       {showSettings && <SettingsPopup />}
+      {showInfo && <InfoPopup />}
 
       <div className="slot-temporal">
         <div className="slot-container">
