@@ -322,20 +322,34 @@ const PantallaJuego: React.FC<PantallaJuegoProps> = ({
             </ul>
           </div>
 
-          <div className="info-section">
+          {/* <div className="info-section">
             <h4>🚫 Rules</h4>
             <ul>
               <li>Only <strong>unblocked tiles</strong> can be clicked</li>
               <li>Upper tiles block lower ones</li>
               <li>Full slot = <strong>Game Over</strong></li>
             </ul>
+          </div> */}
+
+          <div className="info-section">
+            <h4>💡 Super Tip</h4>
+            <p style={{ 
+              background: '#fff3cd', 
+              padding: '0.75rem', 
+              borderRadius: '0.5rem', 
+              border: '2px solid #ffc107',
+              fontWeight: 'bold',
+              color: '#856404'
+            }}>
+              🔥 <strong>Clear bottom tiles first - many tiles are hidden underneath!</strong>
+            </p>
           </div>
 
-          <div className="settings-buttons">
+          {/* <div className="settings-buttons">
             <button className="action-btn continue-btn" onClick={() => setShowInfo(false)}>
               ✅ Got it!
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
