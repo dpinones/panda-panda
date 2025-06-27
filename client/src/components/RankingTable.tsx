@@ -102,10 +102,10 @@ const RankingTable: React.FC<RankingTableProps> = ({
           }
         });
 
-        // Convertir a array, ordenar por tiempo y tomar top 5
+        // Convertir a array, ordenar por tiempo y tomar top 30
         const rankings = Array.from(bestRecordsByPlayer.values())
           .sort((a: GameFinishedData, b: GameFinishedData) => a.completion_time - b.completion_time)
-          .slice(0, 5);
+          .slice(0, 30);
 
         setRankingData(rankings);
       } else if (result.errors) {
@@ -215,7 +215,39 @@ const RankingTable: React.FC<RankingTableProps> = ({
           <p>Be the first to complete a game!</p>
         </div>
       ) : (
-        <div className="ranking-table">
+        <div className="ranking-table" style={{
+          maxHeight: maxHeight,
+          overflowY: 'auto',
+          overflowX: 'hidden',
+          scrollbarWidth: 'thin',
+          scrollbarColor: '#4CAF50 #4CAF50',
+          WebkitScrollbar: {
+            width: '8px'
+          }
+        } as React.CSSProperties & {
+          scrollbarWidth?: string;
+          scrollbarColor?: string;
+          WebkitScrollbar?: any;
+        }}>
+          <style>
+            {`
+              .ranking-table::-webkit-scrollbar {
+                width: 8px;
+              }
+              .ranking-table::-webkit-scrollbar-track {
+                background: #4CAF50;
+                border-radius: 4px;
+              }
+              .ranking-table::-webkit-scrollbar-thumb {
+                background: #388E3C;
+                border-radius: 4px;
+                border: 1px solid #4CAF50;
+              }
+              .ranking-table::-webkit-scrollbar-thumb:hover {
+                background: #2E7D32;
+              }
+            `}
+          </style>
           <table style={{ 
             width: '100%', 
             borderCollapse: 'separate',
